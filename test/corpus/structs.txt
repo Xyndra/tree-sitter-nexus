@@ -1,0 +1,254 @@
+================================================================================
+Simple struct definition
+================================================================================
+
+struct Point {
+    i64 x
+    i64 y
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_definition
+    name: (identifier)
+    (field_definition
+      type: (type_expression
+        (primitive_type))
+      name: (identifier))
+    (field_definition
+      type: (type_expression
+        (primitive_type))
+      name: (identifier))))
+
+================================================================================
+Struct with default values
+================================================================================
+
+struct Counter {
+    i64 count = 0
+    bool enabled = true
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_definition
+    name: (identifier)
+    (field_definition
+      type: (type_expression
+        (primitive_type))
+      name: (identifier)
+      (primary_expression
+        (literal
+          (integer_literal))))
+    (field_definition
+      type: (type_expression
+        (primitive_type))
+      name: (identifier)
+      (primary_expression
+        (literal
+          (boolean_literal))))))
+
+================================================================================
+Struct with implements clause
+================================================================================
+
+struct Player impl Entity, Damageable {
+    i64 health = 100
+    i64 x
+    i64 y
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_definition
+    name: (identifier)
+    (implements_clause
+      (identifier)
+      (identifier))
+    (field_definition
+      type: (type_expression
+        (primitive_type))
+      name: (identifier)
+      (primary_expression
+        (literal
+          (integer_literal))))
+    (field_definition
+      type: (type_expression
+        (primitive_type))
+      name: (identifier))
+    (field_definition
+      type: (type_expression
+        (primitive_type))
+      name: (identifier))))
+
+================================================================================
+Struct with array field
+================================================================================
+
+struct Data {
+    [8]i64 values
+    [dyn]rune name
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_definition
+    name: (identifier)
+    (field_definition
+      type: (type_expression
+        (array_type
+          (integer_literal)
+          (primitive_type)))
+      name: (identifier))
+    (field_definition
+      type: (type_expression
+        (array_type
+          (primitive_type)))
+      name: (identifier))))
+
+================================================================================
+Struct with annotations
+================================================================================
+
+struct Buffer {
+    [dyn]u8 data @prealloc(8)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_definition
+    name: (identifier)
+    (field_definition
+      type: (type_expression
+        (array_type
+          (primitive_type)))
+      name: (identifier)
+      (field_annotations
+        (annotation
+          (identifier)
+          (primary_expression
+            (literal
+              (integer_literal))))))))
+
+================================================================================
+Simple interface definition
+================================================================================
+
+interface Drawable {
+    std draw(): void
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (interface_definition
+    name: (identifier)
+    (method_signature
+      (function_color)
+      name: (identifier)
+      (parameter_list)
+      return_type: (type_expression
+        (primitive_type)))))
+
+================================================================================
+Interface with multiple methods
+================================================================================
+
+interface Entity {
+    std getX(): i64
+    std getY(): i64
+    std setPosition(i64 x, i64 y): void
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (interface_definition
+    name: (identifier)
+    (method_signature
+      (function_color)
+      name: (identifier)
+      (parameter_list)
+      return_type: (type_expression
+        (primitive_type)))
+    (method_signature
+      (function_color)
+      name: (identifier)
+      (parameter_list)
+      return_type: (type_expression
+        (primitive_type)))
+    (method_signature
+      (function_color)
+      name: (identifier)
+      (parameter_list
+        (parameter
+          (type_expression
+            (primitive_type))
+          name: (identifier))
+        (parameter
+          (type_expression
+            (primitive_type))
+          name: (identifier)))
+      return_type: (type_expression
+        (primitive_type)))))
+
+================================================================================
+Interface with extends clause
+================================================================================
+
+interface Moveable extends Entity {
+    std move(i64 dx, i64 dy): void
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (interface_definition
+    name: (identifier)
+    (extends_clause
+      (identifier))
+    (method_signature
+      (function_color)
+      name: (identifier)
+      (parameter_list
+        (parameter
+          (type_expression
+            (primitive_type))
+          name: (identifier))
+        (parameter
+          (type_expression
+            (primitive_type))
+          name: (identifier)))
+      return_type: (type_expression
+        (primitive_type)))))
+
+================================================================================
+Empty struct
+================================================================================
+
+struct Empty {
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_definition
+    name: (identifier)))
+
+================================================================================
+Empty interface
+================================================================================
+
+interface Marker {
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (interface_definition
+    name: (identifier)))

@@ -1,0 +1,125 @@
+================================================================================
+Simple function with no parameters
+================================================================================
+
+std empty(): void {
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (function_color)
+    name: (identifier)
+    (parameter_list)
+    return_type: (type_expression
+      (primitive_type))
+    (block)))
+
+================================================================================
+Function with parameters
+================================================================================
+
+std add(i64 a, i64 b): i64 {
+    return addi64(a, b)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (function_color)
+    name: (identifier)
+    (parameter_list
+      (parameter
+        (type_expression
+          (primitive_type))
+        name: (identifier))
+      (parameter
+        (type_expression
+          (primitive_type))
+        name: (identifier)))
+    return_type: (type_expression
+      (primitive_type))
+    (block
+      (return_statement
+        (complex_expression
+          (call_expression
+            function: (identifier)
+            (argument_list
+              (primary_expression
+                (identifier))
+              (primary_expression
+                (identifier)))))))))
+
+================================================================================
+Function with compat color
+================================================================================
+
+compat main(): void {
+    println("Hello")
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (function_color)
+    name: (identifier)
+    (parameter_list)
+    return_type: (type_expression
+      (primitive_type))
+    (block
+      (expression_statement
+        (complex_expression
+          (call_expression
+            function: (identifier)
+            (argument_list
+              (primary_expression
+                (literal
+                  (string_literal))))))))))
+
+================================================================================
+Function with plat color
+================================================================================
+
+plat native_call(): i32 {
+    return 0
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (function_color)
+    name: (identifier)
+    (parameter_list)
+    return_type: (type_expression
+      (primitive_type))
+    (block
+      (return_statement
+        (primary_expression
+          (literal
+            (integer_literal)))))))
+
+================================================================================
+Method definition
+================================================================================
+
+std (m App app) run(): void {
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (method_definition
+    (function_color)
+    (receiver
+      (type_expression
+        (named_type))
+      (identifier))
+    name: (identifier)
+    (parameter_list)
+    return_type: (type_expression
+      (primitive_type))
+    (block)))

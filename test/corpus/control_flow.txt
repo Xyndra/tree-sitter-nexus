@@ -1,0 +1,333 @@
+================================================================================
+Simple if statement
+================================================================================
+
+if (flag) {
+    println("yes")
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (if_statement
+    (parenthesized_expression
+      (identifier))
+    (block
+      (expression_statement
+        (complex_expression
+          (call_expression
+            function: (identifier)
+            (argument_list
+              (primary_expression
+                (literal
+                  (string_literal))))))))))
+
+================================================================================
+If-else statement
+================================================================================
+
+if (condition) {
+    doA()
+} else {
+    doB()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (if_statement
+    (parenthesized_expression
+      (identifier))
+    (block
+      (expression_statement
+        (complex_expression
+          (call_expression
+            function: (identifier)
+            (argument_list)))))
+    (else_clause
+      (block
+        (expression_statement
+          (complex_expression
+            (call_expression
+              function: (identifier)
+              (argument_list))))))))
+
+================================================================================
+Nested if-else-if
+================================================================================
+
+if (a) {
+    one()
+} else {
+    if (b) {
+        two()
+    } else {
+        three()
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (if_statement
+    (parenthesized_expression
+      (identifier))
+    (block
+      (expression_statement
+        (complex_expression
+          (call_expression
+            function: (identifier)
+            (argument_list)))))
+    (else_clause
+      (block
+        (if_statement
+          (parenthesized_expression
+            (identifier))
+          (block
+            (expression_statement
+              (complex_expression
+                (call_expression
+                  function: (identifier)
+                  (argument_list)))))
+          (else_clause
+            (block
+              (expression_statement
+                (complex_expression
+                  (call_expression
+                    function: (identifier)
+                    (argument_list)))))))))))
+
+================================================================================
+If with function call condition
+================================================================================
+
+if (eqi64(x, 10)) {
+    matched()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (if_statement
+    (parenthesized_expression
+      (complex_expression
+        (call_expression
+          function: (identifier)
+          (argument_list
+            (primary_expression
+              (identifier))
+            (primary_expression
+              (literal
+                (integer_literal)))))))
+    (block
+      (expression_statement
+        (complex_expression
+          (call_expression
+            function: (identifier)
+            (argument_list)))))))
+
+================================================================================
+Return statement with value
+================================================================================
+
+return 42
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (return_statement
+    (primary_expression
+      (literal
+        (integer_literal)))))
+
+================================================================================
+Return statement with expression
+================================================================================
+
+return addi64(a, b)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (return_statement
+    (complex_expression
+      (call_expression
+        function: (identifier)
+        (argument_list
+          (primary_expression
+            (identifier))
+          (primary_expression
+            (identifier)))))))
+
+================================================================================
+Empty return statement
+================================================================================
+
+return
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (return_statement))
+
+================================================================================
+Subscope (loop construct)
+================================================================================
+
+subscope loop {
+    println("iteration")
+    goto loop
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (subscope_statement
+    name: (identifier)
+    (block
+      (expression_statement
+        (complex_expression
+          (call_expression
+            function: (identifier)
+            (argument_list
+              (primary_expression
+                (literal
+                  (string_literal)))))))
+      (goto_statement
+        (identifier)))))
+
+================================================================================
+Goto statement
+================================================================================
+
+goto end
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (goto_statement
+    (identifier)))
+
+================================================================================
+Break statement with label
+================================================================================
+
+break outer
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (break_statement
+    (identifier)))
+
+================================================================================
+Break statement without label
+================================================================================
+
+break
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (break_statement))
+
+================================================================================
+Defer statement
+================================================================================
+
+defer {
+    cleanup()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (defer_statement
+    (block
+      (expression_statement
+        (complex_expression
+          (call_expression
+            function: (identifier)
+            (argument_list)))))))
+
+================================================================================
+Nested blocks
+================================================================================
+
+{
+    c x = 1
+    {
+        c y = 2
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (block
+    (variable_declaration
+      (variable_modifier)
+      name: (identifier)
+      (primary_expression
+        (literal
+          (integer_literal))))
+    (block
+      (variable_declaration
+        (variable_modifier)
+        name: (identifier)
+        (primary_expression
+          (literal
+            (integer_literal)))))))
+
+================================================================================
+While-like loop with subscope and conditional goto
+================================================================================
+
+subscope loop {
+    if (gti64(i, 10)) {
+        break
+    }
+    println(i)
+    i = addi64(i, 1)
+    goto loop
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (subscope_statement
+    name: (identifier)
+    (block
+      (if_statement
+        (parenthesized_expression
+          (complex_expression
+            (call_expression
+              function: (identifier)
+              (argument_list
+                (primary_expression
+                  (identifier))
+                (primary_expression
+                  (literal
+                    (integer_literal)))))))
+        (block
+          (break_statement)))
+      (expression_statement
+        (complex_expression
+          (call_expression
+            function: (identifier)
+            (argument_list
+              (primary_expression
+                (identifier))))))
+      (assignment_statement
+        target: (identifier)
+        value: (complex_expression
+          (call_expression
+            function: (identifier)
+            (argument_list
+              (primary_expression
+                (identifier))
+              (primary_expression
+                (literal
+                  (integer_literal)))))))
+      (goto_statement
+        (identifier)))))

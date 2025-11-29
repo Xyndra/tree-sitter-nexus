@@ -1,0 +1,171 @@
+================================================================================
+Simple constant variable
+================================================================================
+
+c x = 42
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (variable_declaration
+    (variable_modifier)
+    name: (identifier)
+    (primary_expression
+      (literal
+        (integer_literal)))))
+
+================================================================================
+Mutable variable
+================================================================================
+
+m counter = 0
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (variable_declaration
+    (variable_modifier)
+    name: (identifier)
+    (primary_expression
+      (literal
+        (integer_literal)))))
+
+================================================================================
+Heap allocated variable
+================================================================================
+
+h data = [1, 2, 3]
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (variable_declaration
+    (variable_modifier)
+    name: (identifier)
+    (complex_expression
+      (array_expression
+        (primary_expression
+          (literal
+            (integer_literal)))
+        (primary_expression
+          (literal
+            (integer_literal)))
+        (primary_expression
+          (literal
+            (integer_literal)))))))
+
+================================================================================
+Combined modifiers (mutable heap)
+================================================================================
+
+mh buffer = [0]
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (variable_declaration
+    (variable_modifier)
+    name: (identifier)
+    (complex_expression
+      (array_expression
+        (primary_expression
+          (literal
+            (integer_literal)))))))
+
+================================================================================
+Variable with type annotation
+================================================================================
+
+c count: i64 = 100
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (variable_declaration
+    (variable_modifier)
+    name: (identifier)
+    (type_expression
+      (primitive_type))
+    (primary_expression
+      (literal
+        (integer_literal)))))
+
+================================================================================
+Global variable
+================================================================================
+
+g config = "default"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (variable_declaration
+    (variable_modifier)
+    name: (identifier)
+    (primary_expression
+      (literal
+        (string_literal)))))
+
+================================================================================
+Undetermined type variable
+================================================================================
+
+u value = 3.14
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (variable_declaration
+    (variable_modifier)
+    name: (identifier)
+    (primary_expression
+      (literal
+        (float_literal)))))
+
+================================================================================
+Locked variable
+================================================================================
+
+l shared = 0
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (variable_declaration
+    (variable_modifier)
+    name: (identifier)
+    (primary_expression
+      (literal
+        (integer_literal)))))
+
+================================================================================
+Boolean variable
+================================================================================
+
+c flag = true
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (variable_declaration
+    (variable_modifier)
+    name: (identifier)
+    (primary_expression
+      (literal
+        (boolean_literal)))))
+
+================================================================================
+String variable
+================================================================================
+
+c message = "Hello, World!"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (variable_declaration
+    (variable_modifier)
+    name: (identifier)
+    (primary_expression
+      (literal
+        (string_literal)))))

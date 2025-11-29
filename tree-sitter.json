@@ -1,0 +1,36 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "nexus",
+      "camelcase": "Nexus",
+      "title": "Nexus",
+      "scope": "source.nexus",
+      "file-types": ["nx"],
+      "injection-regex": "^nexus$",
+      "class-name": "TreeSitterNexus"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Persuer for Nexus (.nx)",
+    "authors": [
+      {
+        "name": "Xyndra (Coder name)"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/Xyndra/tree-sitter-nexus.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}
