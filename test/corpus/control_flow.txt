@@ -209,29 +209,6 @@ goto end
     (identifier)))
 
 ================================================================================
-Break statement with label
-================================================================================
-
-break outer
-
---------------------------------------------------------------------------------
-
-(source_file
-  (break_statement
-    (identifier)))
-
-================================================================================
-Break statement without label
-================================================================================
-
-break
-
---------------------------------------------------------------------------------
-
-(source_file
-  (break_statement))
-
-================================================================================
 Defer statement
 ================================================================================
 
@@ -280,12 +257,12 @@ Nested blocks
             (integer_literal)))))))
 
 ================================================================================
-While-like loop with subscope and conditional goto
+While-like loop with subscope and conditional return
 ================================================================================
 
 subscope loop {
     if (gti64(i, 10)) {
-        break
+        return
     }
     println(i)
     i = addi64(i, 1)
@@ -310,7 +287,7 @@ subscope loop {
                   (literal
                     (integer_literal)))))))
         (block
-          (break_statement)))
+          (return_statement)))
       (expression_statement
         (complex_expression
           (call_expression
