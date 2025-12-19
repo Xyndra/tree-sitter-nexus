@@ -85,7 +85,12 @@ module.exports = grammar({
     parameter_list: ($) => seq("(", optional(sep1($.parameter, ",")), ")"),
 
     parameter: ($) =>
-      seq($._type, field("name", $.identifier), repeat($.annotation)),
+      seq(
+        optional("m"),
+        $._type,
+        field("name", $.identifier),
+        repeat($.annotation),
+      ),
 
     // Annotations like @range(0, 100), @prealloc(8), @unchecked
     annotation: ($) =>
