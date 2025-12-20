@@ -1677,7 +1677,11 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "_simple_expression"
+                  "name": "identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "parenthesized_expression"
                 },
                 {
                   "type": "SYMBOL",
@@ -1691,8 +1695,11 @@
             }
           },
           {
-            "type": "STRING",
-            "value": "["
+            "type": "IMMEDIATE_TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "["
+            }
           },
           {
             "type": "CHOICE",

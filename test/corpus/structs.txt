@@ -119,6 +119,44 @@ struct Buffer {
         (integer_literal)))))
 
 ================================================================================
+Struct with dynamic array fields and default values
+================================================================================
+
+struct Intersection {
+    i64 start = 0
+    i64 end = 0
+    [dyn]rune day = ""
+    [dyn]Class classes = []
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (struct_definition
+    name: (identifier)
+    (field_definition
+      type: (primitive_type)
+      name: (identifier)
+      (integer_literal))
+    (field_definition
+      type: (primitive_type)
+      name: (identifier)
+      (integer_literal))
+    (field_definition
+      type: (array_type
+        size: (dyn_marker)
+        (primitive_type))
+      name: (identifier)
+      (string_literal))
+    (field_definition
+      type: (array_type
+        size: (dyn_marker)
+        (named_type
+          (type_name)))
+      name: (identifier)
+      (array_expression))))
+
+================================================================================
 Simple interface definition
 ================================================================================
 

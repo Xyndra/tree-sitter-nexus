@@ -358,6 +358,8 @@ module.exports = grammar({
       ),
 
     // Index expression: arr[0] or arr[@unchecked 0]
+    // Uses token.immediate for '[' to require no whitespace between array and bracket
+    // This prevents "0\n[dyn]" from being parsed as an index expression
     index_expression: ($) =>
       prec.left(
         4,
@@ -365,12 +367,13 @@ module.exports = grammar({
           field(
             "array",
             choice(
-              $._simple_expression,
+              $.identifier,
+              $.parenthesized_expression,
               $.field_access_expression,
               $.index_expression,
             ),
           ),
-          "[",
+          token.immediate("["),
           optional("@unchecked"),
           field("index", $._expression),
           "]",

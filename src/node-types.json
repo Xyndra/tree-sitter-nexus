@@ -1092,23 +1092,7 @@
         "required": true,
         "types": [
           {
-            "type": "boolean_literal",
-            "named": true
-          },
-          {
-            "type": "char_literal",
-            "named": true
-          },
-          {
-            "type": "error_literal",
-            "named": true
-          },
-          {
             "type": "field_access_expression",
-            "named": true
-          },
-          {
-            "type": "float_literal",
             "named": true
           },
           {
@@ -1120,19 +1104,7 @@
             "named": true
           },
           {
-            "type": "integer_literal",
-            "named": true
-          },
-          {
-            "type": "none_literal",
-            "named": true
-          },
-          {
             "type": "parenthesized_expression",
-            "named": true
-          },
-          {
-            "type": "string_literal",
             "named": true
           }
         ]
