@@ -13,12 +13,10 @@ struct Point {
   (struct_definition
     name: (identifier)
     (field_definition
-      type: (type_expression
-        (primitive_type))
+      type: (primitive_type)
       name: (identifier))
     (field_definition
-      type: (type_expression
-        (primitive_type))
+      type: (primitive_type)
       name: (identifier))))
 
 ================================================================================
@@ -36,19 +34,13 @@ struct Counter {
   (struct_definition
     name: (identifier)
     (field_definition
-      type: (type_expression
-        (primitive_type))
+      type: (primitive_type)
       name: (identifier)
-      (primary_expression
-        (literal
-          (integer_literal))))
+      (integer_literal))
     (field_definition
-      type: (type_expression
-        (primitive_type))
+      type: (primitive_type)
       name: (identifier)
-      (primary_expression
-        (literal
-          (boolean_literal))))))
+      (boolean_literal))))
 
 ================================================================================
 Struct with implements clause
@@ -69,19 +61,14 @@ struct Player impl Entity, Damageable {
       (identifier)
       (identifier))
     (field_definition
-      type: (type_expression
-        (primitive_type))
+      type: (primitive_type)
       name: (identifier)
-      (primary_expression
-        (literal
-          (integer_literal))))
+      (integer_literal))
     (field_definition
-      type: (type_expression
-        (primitive_type))
+      type: (primitive_type)
       name: (identifier))
     (field_definition
-      type: (type_expression
-        (primitive_type))
+      type: (primitive_type)
       name: (identifier))))
 
 ================================================================================
@@ -99,15 +86,12 @@ struct Data {
   (struct_definition
     name: (identifier)
     (field_definition
-      type: (type_expression
-        (array_type
-          (integer_literal)
-          (primitive_type)))
+      type: (array_type
+        (primitive_type))
       name: (identifier))
     (field_definition
-      type: (type_expression
-        (array_type
-          (primitive_type)))
+      type: (array_type
+        (primitive_type))
       name: (identifier))))
 
 ================================================================================
@@ -124,16 +108,12 @@ struct Buffer {
   (struct_definition
     name: (identifier)
     (field_definition
-      type: (type_expression
-        (array_type
-          (primitive_type)))
+      type: (array_type
+        (primitive_type))
       name: (identifier)
-      (field_annotations
-        (annotation
-          (identifier)
-          (primary_expression
-            (literal
-              (integer_literal))))))))
+      (annotation
+        (identifier)
+        (integer_literal)))))
 
 ================================================================================
 Simple interface definition
@@ -152,8 +132,7 @@ interface Drawable {
       (function_color)
       name: (identifier)
       (parameter_list)
-      return_type: (type_expression
-        (primitive_type)))))
+      return_type: (primitive_type))))
 
 ================================================================================
 Interface with multiple methods
@@ -174,28 +153,23 @@ interface Entity {
       (function_color)
       name: (identifier)
       (parameter_list)
-      return_type: (type_expression
-        (primitive_type)))
+      return_type: (primitive_type))
     (method_signature
       (function_color)
       name: (identifier)
       (parameter_list)
-      return_type: (type_expression
-        (primitive_type)))
+      return_type: (primitive_type))
     (method_signature
       (function_color)
       name: (identifier)
       (parameter_list
         (parameter
-          (type_expression
-            (primitive_type))
+          (primitive_type)
           name: (identifier))
         (parameter
-          (type_expression
-            (primitive_type))
+          (primitive_type)
           name: (identifier)))
-      return_type: (type_expression
-        (primitive_type)))))
+      return_type: (primitive_type))))
 
 ================================================================================
 Interface with extends clause
@@ -217,15 +191,12 @@ interface Moveable extends Entity {
       name: (identifier)
       (parameter_list
         (parameter
-          (type_expression
-            (primitive_type))
+          (primitive_type)
           name: (identifier))
         (parameter
-          (type_expression
-            (primitive_type))
+          (primitive_type)
           name: (identifier)))
-      return_type: (type_expression
-        (primitive_type)))))
+      return_type: (primitive_type))))
 
 ================================================================================
 Empty struct

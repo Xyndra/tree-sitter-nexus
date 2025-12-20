@@ -33,8 +33,16 @@
 ; Named types (user-defined)
 (named_type (type_name) @type)
 
-; Array type size
-(array_type) @type
+; Array type - highlight dyn as keyword within
+(array_type
+  "[" @punctuation.bracket
+  "dyn" @keyword
+  "]" @punctuation.bracket) @type
+
+; Array type with numeric size
+(array_type
+  "[" @punctuation.bracket
+  "]" @punctuation.bracket) @type
 
 ; Type in struct definition
 (struct_definition name: (identifier) @type)

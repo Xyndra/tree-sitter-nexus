@@ -2,170 +2,203 @@
 Simple constant variable
 ================================================================================
 
-c x = 42
+std test(): void { c x = 42 }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (variable_declaration
-    (variable_modifier)
+  (function_definition
+    (function_color)
     name: (identifier)
-    (primary_expression
-      (literal
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (variable_declaration
+        (variable_modifier)
+        name: (identifier)
         (integer_literal)))))
 
 ================================================================================
 Mutable variable
 ================================================================================
 
-m counter = 0
+std test(): void { m counter = 0 }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (variable_declaration
-    (variable_modifier)
+  (function_definition
+    (function_color)
     name: (identifier)
-    (primary_expression
-      (literal
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (variable_declaration
+        (variable_modifier)
+        name: (identifier)
         (integer_literal)))))
 
 ================================================================================
 Heap allocated variable
 ================================================================================
 
-h data = [1, 2, 3]
+std test(): void { h data = [1, 2, 3] }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (variable_declaration
-    (variable_modifier)
+  (function_definition
+    (function_color)
     name: (identifier)
-    (complex_expression
-      (array_expression
-        (primary_expression
-          (literal
-            (integer_literal)))
-        (primary_expression
-          (literal
-            (integer_literal)))
-        (primary_expression
-          (literal
-            (integer_literal)))))))
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (variable_declaration
+        (variable_modifier)
+        name: (identifier)
+        (array_expression
+          (integer_literal)
+          (integer_literal)
+          (integer_literal))))))
 
 ================================================================================
 Combined modifiers (mutable heap)
 ================================================================================
 
-mh buffer = [0]
+std test(): void { mh buffer = [0] }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (variable_declaration
-    (variable_modifier)
+  (function_definition
+    (function_color)
     name: (identifier)
-    (complex_expression
-      (array_expression
-        (primary_expression
-          (literal
-            (integer_literal)))))))
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (variable_declaration
+        (variable_modifier)
+        name: (identifier)
+        (array_expression
+          (integer_literal))))))
 
 ================================================================================
 Variable with type annotation
 ================================================================================
 
-c count: i64 = 100
+std test(): void { c count: i64 = 100 }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (variable_declaration
-    (variable_modifier)
+  (function_definition
+    (function_color)
     name: (identifier)
-    (type_expression
-      (primitive_type))
-    (primary_expression
-      (literal
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (variable_declaration
+        (variable_modifier)
+        name: (identifier)
+        (primitive_type)
         (integer_literal)))))
 
 ================================================================================
 Global variable
 ================================================================================
 
-g config = "default"
+std test(): void { g config = "default" }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (variable_declaration
-    (variable_modifier)
+  (function_definition
+    (function_color)
     name: (identifier)
-    (primary_expression
-      (literal
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (variable_declaration
+        (variable_modifier)
+        name: (identifier)
         (string_literal)))))
 
 ================================================================================
 Undetermined type variable
 ================================================================================
 
-u value = 3.14
+std test(): void { u value = 3.14 }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (variable_declaration
-    (variable_modifier)
+  (function_definition
+    (function_color)
     name: (identifier)
-    (primary_expression
-      (literal
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (variable_declaration
+        (variable_modifier)
+        name: (identifier)
         (float_literal)))))
 
 ================================================================================
 Locked variable
 ================================================================================
 
-l shared = 0
+std test(): void { l shared = 0 }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (variable_declaration
-    (variable_modifier)
+  (function_definition
+    (function_color)
     name: (identifier)
-    (primary_expression
-      (literal
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (variable_declaration
+        (variable_modifier)
+        name: (identifier)
         (integer_literal)))))
 
 ================================================================================
 Boolean variable
 ================================================================================
 
-c flag = true
+std test(): void { c flag = true }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (variable_declaration
-    (variable_modifier)
+  (function_definition
+    (function_color)
     name: (identifier)
-    (primary_expression
-      (literal
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (variable_declaration
+        (variable_modifier)
+        name: (identifier)
         (boolean_literal)))))
 
 ================================================================================
 String variable
 ================================================================================
 
-c message = "Hello, World!"
+std test(): void { c message = "Hello, World!" }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (variable_declaration
-    (variable_modifier)
+  (function_definition
+    (function_color)
     name: (identifier)
-    (primary_expression
-      (literal
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (variable_declaration
+        (variable_modifier)
+        name: (identifier)
         (string_literal)))))

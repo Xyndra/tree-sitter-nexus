@@ -12,8 +12,7 @@ std empty(): void {
     (function_color)
     name: (identifier)
     (parameter_list)
-    return_type: (type_expression
-      (primitive_type))
+    return_type: (primitive_type)
     (block)))
 
 ================================================================================
@@ -32,25 +31,19 @@ std add(i64 a, i64 b): i64 {
     name: (identifier)
     (parameter_list
       (parameter
-        (type_expression
-          (primitive_type))
+        (primitive_type)
         name: (identifier))
       (parameter
-        (type_expression
-          (primitive_type))
+        (primitive_type)
         name: (identifier)))
-    return_type: (type_expression
-      (primitive_type))
+    return_type: (primitive_type)
     (block
       (return_statement
-        (complex_expression
-          (call_expression
-            function: (identifier)
-            (argument_list
-              (primary_expression
-                (identifier))
-              (primary_expression
-                (identifier)))))))))
+        (call_expression
+          function: (identifier)
+          (argument_list
+            (identifier)
+            (identifier)))))))
 
 ================================================================================
 Function with compat color
@@ -67,17 +60,13 @@ compat main(): void {
     (function_color)
     name: (identifier)
     (parameter_list)
-    return_type: (type_expression
-      (primitive_type))
+    return_type: (primitive_type)
     (block
       (expression_statement
-        (complex_expression
-          (call_expression
-            function: (identifier)
-            (argument_list
-              (primary_expression
-                (literal
-                  (string_literal))))))))))
+        (call_expression
+          function: (identifier)
+          (argument_list
+            (string_literal)))))))
 
 ================================================================================
 Function with plat color
@@ -94,13 +83,10 @@ plat native_call(): i32 {
     (function_color)
     name: (identifier)
     (parameter_list)
-    return_type: (type_expression
-      (primitive_type))
+    return_type: (primitive_type)
     (block
       (return_statement
-        (primary_expression
-          (literal
-            (integer_literal)))))))
+        (integer_literal)))))
 
 ================================================================================
 Method definition
@@ -115,11 +101,10 @@ std (m App app) run(): void {
   (method_definition
     (function_color)
     (receiver
-      (type_expression
-        (named_type))
+      (named_type
+        (type_name))
       (identifier))
     name: (identifier)
     (parameter_list)
-    return_type: (type_expression
-      (primitive_type))
+    return_type: (primitive_type)
     (block)))

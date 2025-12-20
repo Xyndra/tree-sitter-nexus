@@ -280,6 +280,7 @@ module.exports = grammar({
 
     float_literal: ($) => /\d+\.\d+/,
 
+    // String literals support newlines directly
     string_literal: ($) =>
       seq('"', repeat(choice(/[^"\\]+/, $.escape_sequence)), '"'),
 

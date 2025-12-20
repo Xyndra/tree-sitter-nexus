@@ -2,309 +2,375 @@
 Simple if statement
 ================================================================================
 
-if (flag) {
-    println("yes")
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (if_statement
-    (parenthesized_expression
-      (identifier))
-    (block
-      (expression_statement
-        (complex_expression
-          (call_expression
-            function: (identifier)
-            (argument_list
-              (primary_expression
-                (literal
-                  (string_literal))))))))))
-
-================================================================================
-If-else statement
-================================================================================
-
-if (condition) {
-    doA()
-} else {
-    doB()
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (if_statement
-    (parenthesized_expression
-      (identifier))
-    (block
-      (expression_statement
-        (complex_expression
-          (call_expression
-            function: (identifier)
-            (argument_list)))))
-    (else_clause
-      (block
-        (expression_statement
-          (complex_expression
-            (call_expression
-              function: (identifier)
-              (argument_list))))))))
-
-================================================================================
-Nested if-else-if
-================================================================================
-
-if (a) {
-    one()
-} else {
-    if (b) {
-        two()
-    } else {
-        three()
+std test(): void {
+    if (flag) {
+        println("yes")
     }
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (if_statement
-    (parenthesized_expression
-      (identifier))
+  (function_definition
+    (function_color)
+    name: (identifier)
+    (parameter_list)
+    return_type: (primitive_type)
     (block
-      (expression_statement
-        (complex_expression
-          (call_expression
-            function: (identifier)
-            (argument_list)))))
-    (else_clause
-      (block
-        (if_statement
-          (parenthesized_expression
-            (identifier))
-          (block
-            (expression_statement
-              (complex_expression
-                (call_expression
-                  function: (identifier)
-                  (argument_list)))))
-          (else_clause
-            (block
-              (expression_statement
-                (complex_expression
-                  (call_expression
-                    function: (identifier)
-                    (argument_list)))))))))))
+      (if_statement
+        (parenthesized_expression
+          (identifier))
+        (block
+          (expression_statement
+            (call_expression
+              function: (identifier)
+              (argument_list
+                (string_literal)))))))))
 
 ================================================================================
-If with function call condition
+If-else statement
 ================================================================================
 
-if (eqi64(x, 10)) {
-    matched()
+std test(): void {
+    if (condition) {
+        doA()
+    } else {
+        doB()
+    }
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (if_statement
-    (parenthesized_expression
-      (complex_expression
-        (call_expression
-          function: (identifier)
-          (argument_list
-            (primary_expression
-              (identifier))
-            (primary_expression
-              (literal
-                (integer_literal)))))))
+  (function_definition
+    (function_color)
+    name: (identifier)
+    (parameter_list)
+    return_type: (primitive_type)
     (block
-      (expression_statement
-        (complex_expression
+      (if_statement
+        (parenthesized_expression
+          (identifier))
+        (block
+          (expression_statement
+            (call_expression
+              function: (identifier)
+              (argument_list))))
+        (else_clause
+          (block
+            (expression_statement
+              (call_expression
+                function: (identifier)
+                (argument_list)))))))))
+
+================================================================================
+Nested if-else-if
+================================================================================
+
+std test(): void {
+    if (a) {
+        one()
+    } else {
+        if (b) {
+            two()
+        } else {
+            three()
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (function_color)
+    name: (identifier)
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (if_statement
+        (parenthesized_expression
+          (identifier))
+        (block
+          (expression_statement
+            (call_expression
+              function: (identifier)
+              (argument_list))))
+        (else_clause
+          (block
+            (if_statement
+              (parenthesized_expression
+                (identifier))
+              (block
+                (expression_statement
+                  (call_expression
+                    function: (identifier)
+                    (argument_list))))
+              (else_clause
+                (block
+                  (expression_statement
+                    (call_expression
+                      function: (identifier)
+                      (argument_list))))))))))))
+
+================================================================================
+If with function call condition
+================================================================================
+
+std test(): void {
+    if (eqi64(x, 10)) {
+        matched()
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (function_color)
+    name: (identifier)
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (if_statement
+        (parenthesized_expression
           (call_expression
             function: (identifier)
-            (argument_list)))))))
+            (argument_list
+              (identifier)
+              (integer_literal))))
+        (block
+          (expression_statement
+            (call_expression
+              function: (identifier)
+              (argument_list))))))))
 
 ================================================================================
 Return statement with value
 ================================================================================
 
-return 42
+std test(): i64 {
+    return 42
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (return_statement
-    (primary_expression
-      (literal
+  (function_definition
+    (function_color)
+    name: (identifier)
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (return_statement
         (integer_literal)))))
 
 ================================================================================
 Return statement with expression
 ================================================================================
 
-return addi64(a, b)
+std test(i64 a, i64 b): i64 {
+    return addi64(a, b)
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (return_statement
-    (complex_expression
-      (call_expression
-        function: (identifier)
-        (argument_list
-          (primary_expression
-            (identifier))
-          (primary_expression
+  (function_definition
+    (function_color)
+    name: (identifier)
+    (parameter_list
+      (parameter
+        (primitive_type)
+        name: (identifier))
+      (parameter
+        (primitive_type)
+        name: (identifier)))
+    return_type: (primitive_type)
+    (block
+      (return_statement
+        (call_expression
+          function: (identifier)
+          (argument_list
+            (identifier)
             (identifier)))))))
 
 ================================================================================
 Empty return statement
 ================================================================================
 
-return
+std test(): void {
+    return
+}
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (return_statement))
+  (function_definition
+    (function_color)
+    name: (identifier)
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (return_statement))))
 
 ================================================================================
 Subscope (loop construct)
 ================================================================================
 
-subscope loop {
-    println("iteration")
-    goto loop
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (subscope_statement
-    name: (identifier)
-    (block
-      (expression_statement
-        (complex_expression
-          (call_expression
-            function: (identifier)
-            (argument_list
-              (primary_expression
-                (literal
-                  (string_literal)))))))
-      (goto_statement
-        (identifier)))))
-
-================================================================================
-Goto statement
-================================================================================
-
-goto end
-
---------------------------------------------------------------------------------
-
-(source_file
-  (goto_statement
-    (identifier)))
-
-================================================================================
-Defer statement
-================================================================================
-
-defer {
-    cleanup()
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (defer_statement
-    (block
-      (expression_statement
-        (complex_expression
-          (call_expression
-            function: (identifier)
-            (argument_list)))))))
-
-================================================================================
-Nested blocks
-================================================================================
-
-{
-    c x = 1
-    {
-        c y = 2
+std test(): void {
+    subscope loop {
+        println("iteration")
+        goto loop
     }
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (block
-    (variable_declaration
-      (variable_modifier)
-      name: (identifier)
-      (primary_expression
-        (literal
-          (integer_literal))))
+  (function_definition
+    (function_color)
+    name: (identifier)
+    (parameter_list)
+    return_type: (primitive_type)
     (block
-      (variable_declaration
-        (variable_modifier)
+      (subscope_statement
         name: (identifier)
-        (primary_expression
-          (literal
+        (block
+          (expression_statement
+            (call_expression
+              function: (identifier)
+              (argument_list
+                (string_literal))))
+          (goto_statement
+            (identifier)))))))
+
+================================================================================
+Goto statement
+================================================================================
+
+std test(): void {
+    goto end
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (function_color)
+    name: (identifier)
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (goto_statement
+        (identifier)))))
+
+================================================================================
+Defer statement
+================================================================================
+
+std test(): void {
+    defer {
+        cleanup()
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (function_color)
+    name: (identifier)
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (defer_statement
+        (block
+          (expression_statement
+            (call_expression
+              function: (identifier)
+              (argument_list))))))))
+
+================================================================================
+Nested blocks
+================================================================================
+
+std test(): void {
+    {
+        c x = 1
+        {
+            c y = 2
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (function_color)
+    name: (identifier)
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (block
+        (variable_declaration
+          (variable_modifier)
+          name: (identifier)
+          (integer_literal))
+        (block
+          (variable_declaration
+            (variable_modifier)
+            name: (identifier)
             (integer_literal)))))))
 
 ================================================================================
 While-like loop with subscope and conditional return
 ================================================================================
 
-subscope loop {
-    if (gti64(i, 10)) {
-        return
+std test(): void {
+    subscope loop {
+        if (gti64(i, 10)) {
+            return
+        }
+        println(i)
+        i = addi64(i, 1)
+        goto loop
     }
-    println(i)
-    i = addi64(i, 1)
-    goto loop
 }
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (subscope_statement
+  (function_definition
+    (function_color)
     name: (identifier)
+    (parameter_list)
+    return_type: (primitive_type)
     (block
-      (if_statement
-        (parenthesized_expression
-          (complex_expression
+      (subscope_statement
+        name: (identifier)
+        (block
+          (if_statement
+            (parenthesized_expression
+              (call_expression
+                function: (identifier)
+                (argument_list
+                  (identifier)
+                  (integer_literal))))
+            (block
+              (return_statement)))
+          (expression_statement
             (call_expression
               function: (identifier)
               (argument_list
-                (primary_expression
-                  (identifier))
-                (primary_expression
-                  (literal
-                    (integer_literal)))))))
-        (block
-          (return_statement)))
-      (expression_statement
-        (complex_expression
-          (call_expression
-            function: (identifier)
-            (argument_list
-              (primary_expression
-                (identifier))))))
-      (assignment_statement
-        target: (identifier)
-        value: (complex_expression
-          (call_expression
-            function: (identifier)
-            (argument_list
-              (primary_expression
-                (identifier))
-              (primary_expression
-                (literal
-                  (integer_literal)))))))
-      (goto_statement
-        (identifier)))))
+                (identifier))))
+          (assignment_statement
+            target: (identifier)
+            value: (call_expression
+              function: (identifier)
+              (argument_list
+                (identifier)
+                (integer_literal))))
+          (goto_statement
+            (identifier)))))))
