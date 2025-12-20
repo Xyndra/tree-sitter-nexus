@@ -87,10 +87,12 @@ struct Data {
     name: (identifier)
     (field_definition
       type: (array_type
+        size: (array_size)
         (primitive_type))
       name: (identifier))
     (field_definition
       type: (array_type
+        size: (dyn_marker)
         (primitive_type))
       name: (identifier))))
 
@@ -109,6 +111,7 @@ struct Buffer {
     name: (identifier)
     (field_definition
       type: (array_type
+        size: (dyn_marker)
         (primitive_type))
       name: (identifier)
       (annotation

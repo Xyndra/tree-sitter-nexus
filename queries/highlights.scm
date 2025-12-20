@@ -13,7 +13,6 @@
   "subscope"
   "goto"
   "unknown"
-  "dyn"
   "macro"
 ] @keyword
 
@@ -33,16 +32,17 @@
 ; Named types (user-defined)
 (named_type (type_name) @type)
 
-; Array type - highlight dyn as keyword within
+; Array type - highlight dyn_marker as keyword
 (array_type
   "[" @punctuation.bracket
-  "dyn" @keyword
-  "]" @punctuation.bracket) @type
+  (dyn_marker) @keyword
+  "]" @punctuation.bracket)
 
 ; Array type with numeric size
 (array_type
   "[" @punctuation.bracket
-  "]" @punctuation.bracket) @type
+  (array_size) @number
+  "]" @punctuation.bracket)
 
 ; Type in struct definition
 (struct_definition name: (identifier) @type)
@@ -80,6 +80,7 @@
 
 ; Macro calls
 (macro_call_expression name: (identifier) @function.macro)
+(top_level_macro_call name: (identifier) @function.macro)
 "$" @punctuation.special
 
 ; Field access
@@ -116,6 +117,7 @@
 ; Literals
 (integer_literal) @number
 (float_literal) @number.float
+; String literals - capture the whole thing as string to prevent inner content from being highlighted differently
 (string_literal) @string
 (char_literal) @character
 (escape_sequence) @string.escape

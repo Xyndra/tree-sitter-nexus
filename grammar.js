@@ -21,7 +21,12 @@ module.exports = grammar({
         $.struct_definition,
         $.interface_definition,
         $.macro_definition,
+        $.top_level_macro_call,
       ),
+
+    // Top-level macro call: $define_map(...)
+    top_level_macro_call: ($) =>
+      seq("$", field("name", $.identifier), $.argument_list),
 
     // Comments
     comment: ($) => token(seq("//", /.*/)),
@@ -171,7 +176,21 @@ module.exports = grammar({
     // Array types: [8]int or [dyn]int
     // Higher precedence to prefer as type when followed by type
     array_type: ($) =>
-      prec(10, seq("[", field("size", choice(/\d+/, "dyn")), "]", $._type)),
+      prec(
+        10,
+        seq(
+          "[",
+          field("size", choice($.array_size, $.dyn_marker)),
+          "]",
+          $._type,
+        ),
+      ),
+
+    // Numeric array size - use token.immediate and alias to avoid conflict with integer_literal
+    array_size: ($) => token(prec(11, /\d+/)),
+
+    // Dynamic array marker
+    dyn_marker: ($) => "dyn",
 
     // Unknown type: unknown<A, B, Error, None>
     unknown_type: ($) => seq("unknown", "<", sep1($._type, ","), ">"),

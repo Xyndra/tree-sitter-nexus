@@ -257,8 +257,12 @@
         "required": true,
         "types": [
           {
-            "type": "dyn",
-            "named": false
+            "type": "array_size",
+            "named": true
+          },
+          {
+            "type": "dyn_marker",
+            "named": true
           }
         ]
       }
@@ -1214,11 +1218,6 @@
     }
   },
   {
-    "type": "integer_literal",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "interface_definition",
     "named": true,
     "fields": {
@@ -2001,6 +2000,10 @@
           "named": true
         },
         {
+          "type": "top_level_macro_call",
+          "named": true
+        },
+        {
           "type": "use_statement",
           "named": true
         }
@@ -2099,6 +2102,32 @@
       "types": [
         {
           "type": "block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "top_level_macro_call",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "argument_list",
           "named": true
         }
       ]
@@ -2344,6 +2373,10 @@
     "named": false
   },
   {
+    "type": "array_size",
+    "named": true
+  },
+  {
     "type": "bool",
     "named": false
   },
@@ -2361,8 +2394,8 @@
     "named": false
   },
   {
-    "type": "dyn",
-    "named": false
+    "type": "dyn_marker",
+    "named": true
   },
   {
     "type": "else",
@@ -2431,6 +2464,10 @@
   {
     "type": "impl",
     "named": false
+  },
+  {
+    "type": "integer_literal",
+    "named": true
   },
   {
     "type": "interface",
