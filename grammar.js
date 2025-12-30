@@ -207,6 +207,7 @@ module.exports = grammar({
         $.defer_statement,
         $.subscope_statement,
         $.goto_statement,
+        $.exit_statement,
         $.expression_statement,
         $.block,
       ),
@@ -258,7 +259,10 @@ module.exports = grammar({
       seq("subscope", field("name", $.identifier), $.block),
 
     // Goto statement
-    goto_statement: ($) => seq("goto", $.identifier),
+    goto_statement: ($) => seq("goto", field("label", $.identifier)),
+
+    // Exit statement (exit a subscope)
+    exit_statement: ($) => seq("exit", field("label", $.identifier)),
 
     // Expression statement
     expression_statement: ($) => $._expression,

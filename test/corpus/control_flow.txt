@@ -243,7 +243,7 @@ std test(): void {
               (argument_list
                 (string_literal))))
           (goto_statement
-            (identifier)))))))
+            label: (identifier)))))))
 
 ================================================================================
 Goto statement
@@ -263,7 +263,32 @@ std test(): void {
     return_type: (primitive_type)
     (block
       (goto_statement
-        (identifier)))))
+        label: (identifier)))))
+
+================================================================================
+Exit statement
+================================================================================
+
+std test(): void {
+    subscope loop {
+        exit loop
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (function_color)
+    name: (identifier)
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (subscope_statement
+        name: (identifier)
+        (block
+          (exit_statement
+            label: (identifier)))))))
 
 ================================================================================
 Defer statement
@@ -373,4 +398,56 @@ std test(): void {
                 (identifier)
                 (integer_literal))))
           (goto_statement
-            (identifier)))))))
+            label: (identifier)))))))
+
+================================================================================
+While-like loop with subscope and exit
+================================================================================
+
+std test(): void {
+    subscope loop {
+        if (gti64(i, 10)) {
+            exit loop
+        }
+        println(i)
+        i = addi64(i, 1)
+        goto loop
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_definition
+    (function_color)
+    name: (identifier)
+    (parameter_list)
+    return_type: (primitive_type)
+    (block
+      (subscope_statement
+        name: (identifier)
+        (block
+          (if_statement
+            (parenthesized_expression
+              (call_expression
+                function: (identifier)
+                (argument_list
+                  (identifier)
+                  (integer_literal))))
+            (block
+              (exit_statement
+                label: (identifier))))
+          (expression_statement
+            (call_expression
+              function: (identifier)
+              (argument_list
+                (identifier))))
+          (assignment_statement
+            target: (identifier)
+            value: (call_expression
+              function: (identifier)
+              (argument_list
+                (identifier)
+                (integer_literal))))
+          (goto_statement
+            label: (identifier)))))))
