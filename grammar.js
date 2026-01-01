@@ -20,6 +20,7 @@ module.exports = grammar({
         $.method_definition,
         $.struct_definition,
         $.interface_definition,
+        $.impl_block,
         $.macro_definition,
         $.top_level_macro_call,
       ),
@@ -110,13 +111,35 @@ module.exports = grammar({
       seq(
         "struct",
         field("name", $.identifier),
-        optional($.implements_clause),
         "{",
         repeat($.field_definition),
         "}",
       ),
 
-    implements_clause: ($) => seq("impl", sep1($.identifier, ",")),
+    // Impl block: impl StructName : InterfaceName { methods... }
+    // or: impl StructName { methods... }
+    impl_block: ($) =>
+      seq(
+        "impl",
+        field("struct_name", $.identifier),
+        optional(seq(":", field("interface", $.identifier))),
+        "{",
+        repeat($.impl_method),
+        "}",
+      ),
+
+    // Method inside an impl block (no receiver in parens, self is implicit)
+    impl_method: ($) =>
+      seq(
+        $.function_color,
+        optional("m"), // mutable self
+        field("name", $.identifier),
+        $.parameter_list,
+        ":",
+        field("return_type", $._type),
+        repeat($.annotation),
+        $.block,
+      ),
 
     field_definition: ($) =>
       seq(
@@ -141,7 +164,6 @@ module.exports = grammar({
 
     method_signature: ($) =>
       seq(
-        $.function_color,
         optional(seq("(", optional("m"), ")")),
         field("name", $.identifier),
         $.parameter_list,

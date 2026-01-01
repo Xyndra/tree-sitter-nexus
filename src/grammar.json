@@ -35,6 +35,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "impl_block"
+        },
+        {
+          "type": "SYMBOL",
           "name": "macro_definition"
         },
         {
@@ -550,18 +554,6 @@
           }
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "implements_clause"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
           "type": "STRING",
           "value": "{"
         },
@@ -578,7 +570,7 @@
         }
       ]
     },
-    "implements_clause": {
+    "impl_block": {
       "type": "SEQ",
       "members": [
         {
@@ -586,29 +578,108 @@
           "value": "impl"
         },
         {
-          "type": "SEQ",
+          "type": "FIELD",
+          "name": "struct_name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "identifier"
-            },
-            {
-              "type": "REPEAT",
-              "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": ","
-                  },
-                  {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "interface",
+                  "content": {
                     "type": "SYMBOL",
                     "name": "identifier"
                   }
-                ]
-              }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "impl_method"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "impl_method": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "function_color"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "m"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parameter_list"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "FIELD",
+          "name": "return_type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_type"
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "annotation"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block"
         }
       ]
     },
@@ -742,10 +813,6 @@
     "method_signature": {
       "type": "SEQ",
       "members": [
-        {
-          "type": "SYMBOL",
-          "name": "function_color"
-        },
         {
           "type": "CHOICE",
           "members": [

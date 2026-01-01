@@ -1090,15 +1090,96 @@
     }
   },
   {
-    "type": "implements_clause",
+    "type": "impl_block",
     "named": true,
-    "fields": {},
+    "fields": {
+      "interface": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "struct_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "impl_method",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "impl_method",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "return_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_type",
+            "named": true
+          },
+          {
+            "type": "named_type",
+            "named": true
+          },
+          {
+            "type": "primitive_type",
+            "named": true
+          },
+          {
+            "type": "unknown_type",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "identifier",
+          "type": "annotation",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "function_color",
+          "named": true
+        },
+        {
+          "type": "parameter_list",
           "named": true
         }
       ]
@@ -1573,13 +1654,9 @@
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "function_color",
-          "named": true
-        },
         {
           "type": "parameter_list",
           "named": true
@@ -1977,6 +2054,10 @@
           "named": true
         },
         {
+          "type": "impl_block",
+          "named": true
+        },
+        {
           "type": "interface_definition",
           "named": true
         },
@@ -2039,10 +2120,6 @@
       "types": [
         {
           "type": "field_definition",
-          "named": true
-        },
-        {
-          "type": "implements_clause",
           "named": true
         }
       ]

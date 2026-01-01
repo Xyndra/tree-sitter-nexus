@@ -43,35 +43,6 @@ struct Counter {
       (boolean_literal))))
 
 ================================================================================
-Struct with implements clause
-================================================================================
-
-struct Player impl Entity, Damageable {
-    i64 health = 100
-    i64 x
-    i64 y
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (struct_definition
-    name: (identifier)
-    (implements_clause
-      (identifier)
-      (identifier))
-    (field_definition
-      type: (primitive_type)
-      name: (identifier)
-      (integer_literal))
-    (field_definition
-      type: (primitive_type)
-      name: (identifier))
-    (field_definition
-      type: (primitive_type)
-      name: (identifier))))
-
-================================================================================
 Struct with array field
 ================================================================================
 
@@ -161,7 +132,7 @@ Simple interface definition
 ================================================================================
 
 interface Drawable {
-    std draw(): void
+    draw(): void
 }
 
 --------------------------------------------------------------------------------
@@ -170,7 +141,6 @@ interface Drawable {
   (interface_definition
     name: (identifier)
     (method_signature
-      (function_color)
       name: (identifier)
       (parameter_list)
       return_type: (primitive_type))))
@@ -180,9 +150,9 @@ Interface with multiple methods
 ================================================================================
 
 interface Entity {
-    std getX(): i64
-    std getY(): i64
-    std setPosition(i64 x, i64 y): void
+    getX(): i64
+    getY(): i64
+    setPosition(i64 x, i64 y): void
 }
 
 --------------------------------------------------------------------------------
@@ -191,17 +161,14 @@ interface Entity {
   (interface_definition
     name: (identifier)
     (method_signature
-      (function_color)
       name: (identifier)
       (parameter_list)
       return_type: (primitive_type))
     (method_signature
-      (function_color)
       name: (identifier)
       (parameter_list)
       return_type: (primitive_type))
     (method_signature
-      (function_color)
       name: (identifier)
       (parameter_list
         (parameter
@@ -217,7 +184,7 @@ Interface with extends clause
 ================================================================================
 
 interface Moveable extends Entity {
-    std move(i64 dx, i64 dy): void
+    move(i64 dx, i64 dy): void
 }
 
 --------------------------------------------------------------------------------
@@ -228,7 +195,6 @@ interface Moveable extends Entity {
     (extends_clause
       (identifier))
     (method_signature
-      (function_color)
       name: (identifier)
       (parameter_list
         (parameter
@@ -238,6 +204,111 @@ interface Moveable extends Entity {
           (primitive_type)
           name: (identifier)))
       return_type: (primitive_type))))
+
+================================================================================
+Interface with mutable receiver
+================================================================================
+
+interface Mutable {
+    (m) modify(): void
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (interface_definition
+    name: (identifier)
+    (method_signature
+      name: (identifier)
+      (parameter_list)
+      return_type: (primitive_type))))
+
+================================================================================
+Simple impl block with interface
+================================================================================
+
+impl Point : Drawable {
+    std draw(): void {
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (impl_block
+    struct_name: (identifier)
+    interface: (identifier)
+    (impl_method
+      (function_color)
+      name: (identifier)
+      (parameter_list)
+      return_type: (primitive_type)
+      (block))))
+
+================================================================================
+Impl block without interface
+================================================================================
+
+impl Point {
+    std describe(): str {
+        return "point"
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (impl_block
+    struct_name: (identifier)
+    (impl_method
+      (function_color)
+      name: (identifier)
+      (parameter_list)
+      return_type: (named_type
+        (type_name))
+      (block
+        (return_statement
+          (string_literal))))))
+
+================================================================================
+Impl block with multiple methods
+================================================================================
+
+impl Vector : Math {
+    std add(Vector other): Vector {
+    }
+
+    std scale(f64 factor): Vector {
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (impl_block
+    struct_name: (identifier)
+    interface: (identifier)
+    (impl_method
+      (function_color)
+      name: (identifier)
+      (parameter_list
+        (parameter
+          (named_type
+            (type_name))
+          name: (identifier)))
+      return_type: (named_type
+        (type_name))
+      (block))
+    (impl_method
+      (function_color)
+      name: (identifier)
+      (parameter_list
+        (parameter
+          (primitive_type)
+          name: (identifier)))
+      return_type: (named_type
+        (type_name))
+      (block))))
 
 ================================================================================
 Empty struct
